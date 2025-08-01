@@ -116,6 +116,7 @@ export default {
   min-height: 60px;
   box-sizing: border-box;
   margin: 0 auto;
+  position: relative;
 }
 
 .feature-item:hover {
@@ -127,10 +128,11 @@ export default {
 
 .feature-item i {
   color: #10b981;
-  margin-right: 1rem;
   font-size: 1.2rem;
   min-width: 20px;
   flex-shrink: 0;
+  position: absolute;
+  left: 1.5rem;
 }
 
 .feature-item span {
@@ -138,6 +140,8 @@ export default {
   text-align: center;
   word-wrap: break-word;
   line-height: 1.4;
+  width: 100%;
+  padding: 0 3rem;
 }
 
 .hero-buttons {
@@ -200,6 +204,10 @@ export default {
   .feature-item {
     padding: 1rem 1.8rem;
   }
+  
+  .feature-item span {
+    padding: 0 2.8rem;
+  }
 }
 
 /* 手机设备 */
@@ -232,6 +240,7 @@ export default {
   .feature-item span {
     font-size: 0.95rem;
     line-height: 1.5;
+    padding: 0 2.8rem;
   }
   
   .hero-buttons {
@@ -272,7 +281,12 @@ export default {
   
   .feature-item i {
     font-size: 1rem;
-    margin-right: 0.8rem;
+    left: 1rem;
+  }
+  
+  .feature-item span {
+    padding: 0 2.5rem;
+    font-size: 0.9rem;
   }
   
   .btn-lg {
