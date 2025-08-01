@@ -4,11 +4,11 @@
       <div class="row justify-content-center align-items-center min-vh-100">
         <div class="col-lg-8 text-center" data-aos="fade-up">
           <h1 class="hero-title">
-            <span class="gradient-text">FlyLabs</span>
-            <br>Web3加速器
+            <span class="gradient-text">{{ getText('hero.title') }}</span>
+            <br>{{ getText('hero.subtitle') }}
           </h1>
           <p class="hero-subtitle">
-            从0到1激活飞轮效应，助力Web3创新腾飞！
+            {{ getText('hero.description') }}
           </p>
           <div class="hero-features">
             <div class="feature-item" v-for="feature in features" :key="feature">
@@ -17,8 +17,8 @@
             </div>
           </div>
           <div class="hero-buttons">
-            <router-link to="/contact" class="btn btn-primary btn-lg me-3">开始合作</router-link>
-            <router-link to="/services" class="btn btn-outline-light btn-lg">了解更多</router-link>
+            <router-link to="/contact" class="btn btn-primary btn-lg me-3">{{ getText('hero.startCooperation') }}</router-link>
+            <router-link to="/services" class="btn btn-outline-light btn-lg">{{ getText('hero.learnMore') }}</router-link>
           </div>
         </div>
       </div>
@@ -27,16 +27,21 @@
 </template>
 
 <script>
+import { computed } from 'vue'
+import { useLanguage } from '../composables/useLanguage.js'
+
 export default {
   name: 'HeroSection',
-  data() {
+  setup() {
+    const { getText } = useLanguage()
+    
+    const features = computed(() => {
+      return getText('hero.features')
+    })
+    
     return {
-      features: [
-        '全方位项目孵化服务',
-        '丰富的社区与投资资源',
-        '专业的技术团队支持',
-        '成熟的商业落地经验'
-      ]
+      getText,
+      features
     }
   }
 }

@@ -10,8 +10,8 @@
       <div class="container py-5">
         <div class="row">
           <div class="col-12 text-center mb-5" data-aos="fade-up">
-            <h1 class="gradient-text">我们的服务</h1>
-            <p class="lead">全方位Web3项目孵化服务，助力您的项目腾飞</p>
+            <h1 class="gradient-text">{{ getText('services.title') }}</h1>
+            <p class="lead">{{ getText('services.subtitle') }}</p>
           </div>
         </div>
         
@@ -35,45 +35,33 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import Hyperspeed from '../components/Hyperspeed.vue'
 import { hyperspeedPresets } from '../components/HyperspeedPresets'
+import { useLanguage } from '../composables/useLanguage.js'
 
 // 使用预设配置
 const effectOptions = ref(hyperspeedPresets.one)
 
-const services = ref([
-  {
-    icon: 'fas fa-rocket',
-    title: '0-1项目搭建',
-    description: '从概念到实现，全程技术指导和数据优化',
-    features: ['技术架构设计', '智能合约开发', '前端界面开发', '性能优化', '安全审计']
-  },
-  {
-    icon: 'fas fa-users',
-    title: '社区资源整合',
-    description: '丰富的社区资源，助力NFT销售和用户增长',
-    features: ['社区运营策略', 'NFT营销推广', '用户获取渠道', 'KOL合作资源', '社交媒体管理']
-  },
-  {
-    icon: 'fas fa-chart-line',
-    title: 'Listing上所孵化',
-    description: '对接顶级交易所，提供上币全流程服务',
-    features: ['交易所对接', '上币流程指导', '市值管理', '流动性支持', '合规咨询']
-  },
-  {
-    icon: 'fas fa-handshake',
-    title: '投资机构推荐',
-    description: '连接优质投资机构，为项目提供资金支持',
-    features: ['投资人介绍', '融资策略制定', '商业计划书优化', '路演安排', '投后服务']
-  },
-  {
-    icon: 'fas fa-exchange-alt',
-    title: '项目买卖',
-    description: '提供优质项目资源，项目交易服务',
-    features: ['项目评估', '资产整合', '法律咨询', '交易撮合', '风险控制']
-  }
-])
+const { getText } = useLanguage()
+
+const serviceKeys = ['project', 'community', 'listing', 'investment', 'trading']
+const serviceIcons = [
+  'fas fa-rocket',
+  'fas fa-users',
+  'fas fa-chart-line',
+  'fas fa-handshake',
+  'fas fa-exchange-alt'
+]
+
+const services = computed(() => {
+  return serviceKeys.map((key, index) => ({
+    icon: serviceIcons[index],
+    title: getText(`services.items.${key}.title`),
+    description: getText(`services.items.${key}.description`),
+    features: getText(`services.items.${key}.features`)
+  }))
+})
 </script>
 
 <style scoped>

@@ -4,9 +4,9 @@
       <div class="row">
         <div class="col-12 text-center mb-5" data-aos="fade-up">
           <h2 class="section-title">
-            机构<span class="gradient-text">合作</span>
+            {{ getText('partnership.title') }}<span class="gradient-text">{{ getText('partnership.titleHighlight') }}</span>
           </h2>
-          <p class="section-subtitle">携手顶级交易所，共创Web3未来</p>
+          <p class="section-subtitle">{{ getText('partnership.subtitle') }}</p>
         </div>
       </div>
       
@@ -51,17 +51,17 @@
                   <div class="partnership-stats">
                     <div class="stat-item">
                       <span class="stat-value">{{ exchange.volume }}</span>
-                      <span class="stat-label">24H交易量</span>
+                      <span class="stat-label">{{ getText('partnership.stats.volume') }}</span>
                     </div>
                     <div class="stat-item">
                       <span class="stat-value">{{ exchange.users }}</span>
-                      <span class="stat-label">用户数量</span>
+                      <span class="stat-label">{{ getText('partnership.stats.users') }}</span>
                     </div>
                   </div>
                   
                   <div class="partnership-status">
                     <div class="status-indicator active"></div>
-                    <span>战略合作伙伴</span>
+                    <span>{{ getText('partnership.stats.status') }}</span>
                   </div>
                 </div>
               </div>
@@ -81,19 +81,19 @@
               <div class="col-md-4">
                 <div class="summary-item">
                   <div class="summary-number">{{ exchanges.length }}</div>
-                  <div class="summary-label">合作交易所</div>
+                  <div class="summary-label">{{ getText('partnership.summary.exchanges') }}</div>
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="summary-item">
                   <div class="summary-number">$2.5T+</div>
-                  <div class="summary-label">总交易量</div>
+                  <div class="summary-label">{{ getText('partnership.summary.totalVolume') }}</div>
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="summary-item">
                   <div class="summary-number">50M+</div>
-                  <div class="summary-label">覆盖用户</div>
+                  <div class="summary-label">{{ getText('partnership.summary.coverage') }}</div>
                 </div>
               </div>
             </div>
@@ -105,7 +105,8 @@
 </template>
 
 <script>
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref, onMounted, onUnmounted, computed } from 'vue'
+import { useLanguage } from '../composables/useLanguage.js'
 
 // 导入交易所logo图片
 import BinanceLogo from '@/assets/images/logos/exchanges/Binance.jpg'
@@ -121,91 +122,29 @@ import WeexLogo from '@/assets/images/logos/exchanges/Weex.jpg'
 export default {
   name: 'ProjectShowcase',
   setup() {
+    const { getText } = useLanguage()
     const activeIndex = ref(-1)
     
-    const exchanges = ref([
-      {
-        name: 'Binance',
-        logo: 'B',
-        logoImg: BinanceLogo,
-        description: '全球最大的加密货币交易平台',
-        volume: '$76.5B',
-        users: '120M+',
-        color: '#f3ba2f'
-      },
-      {
-        name: 'Bybit',
-        logo: 'BY',
-        logoImg: BybitLogo,
-        description: '领先的衍生品交易平台',
-        volume: '$15.2B',
-        users: '20M+',
-        color: '#f7a600'
-      },
-      {
-        name: 'Bitget',
-        logo: 'BG',
-        logoImg: BitgetLogo,
-        description: '专业的数字资产交易服务',
-        volume: '$8.9B',
-        users: '8M+',
-        color: '#00d4ff'
-      },
-      {
-        name: 'KuCoin',
-        logo: 'KC',
-        logoImg: KuCoinLogo,
-        description: '全球化的数字货币交易服务平台',
-        volume: '$12.3B',
-        users: '10M+',
-        color: '#24ae8f'
-      },
-      {
-        name: 'Gate.io',
-        logo: 'GT',
-        logoImg: GateLogo,
-        description: '区块链资产国际站',
-        volume: '$6.7B',
-        users: '6M+',
-        color: '#5d2dd5'
-      },
-      {
-        name: 'MEXC',
-        logo: 'MX',
-        logoImg: MEXCLogo,
-        description: '数字资产交易平台',
-        volume: '$4.2B',
-        users: '5M+',
-        color: '#07d77b'
-      },
-      {
-        name: 'BingX',
-        logo: 'BX',
-        logoImg: BingXLogo,
-        description: '全球领先的数字资产服务平台',
-        volume: '$3.8B',
-        users: '4M+',
-        color: '#1890ff'
-      },
-      {
-        name: 'LBank',
-        logo: 'LB',
-        logoImg: LBankLogo,
-        description: '全球化的数字资产交易平台',
-        volume: '$2.1B',
-        users: '3M+',
-        color: '#2f54eb'
-      },
-      {
-        name: 'Weex',
-        logo: 'WX',
-        logoImg: WeexLogo,
-        description: '新一代数字资产交易平台',
-        volume: '$1.5B',
-        users: '2M+',
-        color: '#722ed1'
-      }
-    ])
+    const exchangeKeys = ['binance', 'bybit', 'bitget', 'kucoin', 'gate', 'mexc', 'bingx', 'lbank', 'weex']
+    
+    const exchangesBase = [
+      { name: 'Binance', logo: 'B', logoImg: BinanceLogo, volume: '$76.5B', users: '120M+', color: '#f3ba2f' },
+      { name: 'Bybit', logo: 'BY', logoImg: BybitLogo, volume: '$15.2B', users: '20M+', color: '#f7a600' },
+      { name: 'Bitget', logo: 'BG', logoImg: BitgetLogo, volume: '$8.9B', users: '8M+', color: '#00d4ff' },
+      { name: 'KuCoin', logo: 'KC', logoImg: KuCoinLogo, volume: '$12.3B', users: '10M+', color: '#24ae8f' },
+      { name: 'Gate.io', logo: 'GT', logoImg: GateLogo, volume: '$6.7B', users: '6M+', color: '#5d2dd5' },
+      { name: 'MEXC', logo: 'MX', logoImg: MEXCLogo, volume: '$4.2B', users: '5M+', color: '#07d77b' },
+      { name: 'BingX', logo: 'BX', logoImg: BingXLogo, volume: '$3.8B', users: '4M+', color: '#1890ff' },
+      { name: 'LBank', logo: 'LB', logoImg: LBankLogo, volume: '$2.1B', users: '3M+', color: '#2f54eb' },
+      { name: 'Weex', logo: 'WX', logoImg: WeexLogo, volume: '$1.5B', users: '2M+', color: '#722ed1' }
+    ]
+    
+    const exchanges = computed(() => {
+      return exchangesBase.map((exchange, index) => ({
+        ...exchange,
+        description: getText(`partnership.exchanges.${exchangeKeys[index]}`)
+      }))
+    })
 
     const activateCard = (index) => {
       activeIndex.value = index
@@ -314,6 +253,7 @@ export default {
     })
 
     return {
+      getText,
       exchanges,
       activeIndex,
       activateCard,

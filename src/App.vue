@@ -35,13 +35,32 @@
         <div class="navbar-collapse" :class="{ show: isNavbarOpen }" id="navbarNav">
           <ul class="navbar-nav-floating">
             <li class="nav-item-floating">
-              <router-link class="nav-link-floating" to="/">首页</router-link>
+              <router-link class="nav-link-floating" to="/">{{ getNavText('home') }}</router-link>
             </li>
             <li class="nav-item-floating">
-              <router-link class="nav-link-floating" to="/services">服务</router-link>
+              <router-link class="nav-link-floating" to="/services">{{ getNavText('services') }}</router-link>
             </li>
             <li class="nav-item-floating">
-              <router-link class="nav-link-floating" to="/contact">联系我们</router-link>
+              <router-link class="nav-link-floating" to="/contact">{{ getNavText('contact') }}</router-link>
+            </li>
+            <li class="nav-item-floating">
+              <div class="language-switcher">
+                <button 
+                  class="lang-btn" 
+                  :class="{ active: currentLanguage === 'zh' }"
+                  @click="switchLanguage('zh')"
+                >
+                  中
+                </button>
+                <span class="lang-divider">|</span>
+                <button 
+                  class="lang-btn" 
+                  :class="{ active: currentLanguage === 'en' }"
+                  @click="switchLanguage('en')"
+                >
+                  EN
+                </button>
+              </div>
             </li>
           </ul>
         </div>
@@ -57,24 +76,25 @@
         <div class="row">
           <div class="col-md-6">
             <h5>FlyLabs</h5>
-            <p>Web3项目加速器，助力区块链创新</p>
+            <p>{{ getText('footer.description') }}</p>
           </div>
           <div class="col-md-6">
-            <h6>联系我们</h6>
+            <h6>{{ getText('footer.contactTitle') }}</h6>
             <p>Email: contact@flylabs.io</p>
           </div>
         </div>
         <hr>
-        <p class="text-center">&copy; 2024 FlyLabs. All rights reserved.</p>
+        <p class="text-center">&copy; 2024 FlyLabs. {{ getText('footer.copyright') }}.</p>
       </div>
     </footer>
   </div>
 </template>
 
 <script>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import ParticleBackground from './components/ParticleBackground.vue'
 import SplashCursor from './components/SplashCursor.vue'
+import { useLanguage } from './composables/useLanguage.js'
 
 export default {
   name: 'App',
@@ -85,13 +105,25 @@ export default {
   setup() {
     const isNavbarOpen = ref(false)
     
+    // 语言功能
+    const { currentLanguage, getText, getNavText, switchLanguage, initLanguage } = useLanguage()
+    
     const toggleNavbar = () => {
       isNavbarOpen.value = !isNavbarOpen.value
     }
     
+    // 初始化语言设置
+    onMounted(() => {
+      initLanguage()
+    })
+    
     return {
       isNavbarOpen,
-      toggleNavbar
+      toggleNavbar,
+      currentLanguage,
+      getText,
+      getNavText,
+      switchLanguage
     }
   }
 }
@@ -230,6 +262,46 @@ export default {
   color: #00d4ff !important;
   background: rgba(0, 212, 255, 0.15);
   text-shadow: 0 0 10px rgba(0, 212, 255, 0.4);
+}
+
+/* 语言切换器样式 */
+.language-switcher {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: 12px;
+}
+
+.lang-btn {
+  background: none;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: rgba(255, 255, 255, 0.8);
+  padding: 6px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  min-width: 40px;
+}
+
+.lang-btn:hover {
+  border-color: rgba(0, 212, 255, 0.6);
+  color: #00d4ff;
+  background: rgba(0, 212, 255, 0.1);
+  transform: translateY(-1px);
+}
+
+.lang-btn.active {
+  border-color: #00d4ff;
+  color: #00d4ff;
+  background: rgba(0, 212, 255, 0.15);
+  text-shadow: 0 0 8px rgba(0, 212, 255, 0.4);
+}
+
+.lang-divider {
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 0.9rem;
 }
 
 .navbar-toggler-floating {

@@ -11,46 +11,46 @@
         <div class="row justify-content-center">
           <div class="col-lg-8">
             <div class="contact-form-container" data-aos="fade-up">
-              <h1 class="text-center gradient-text mb-4">联系我们</h1>
-              <p class="text-center lead mb-5">准备好开始您的Web3之旅了吗？立即联系我们！</p>
+              <h1 class="text-center gradient-text mb-4">{{ getText('contact.title') }}</h1>
+              <p class="text-center lead mb-5">{{ getText('contact.subtitle') }}</p>
               
               <form @submit.prevent="submitForm" class="contact-form">
                 <div class="row">
                   <div class="col-md-6 mb-3">
-                    <label for="name" class="form-label">姓名</label>
+                    <label for="name" class="form-label">{{ getText('contact.form.name') }}</label>
                     <input type="text" class="form-control" id="name" v-model="form.name" required>
                   </div>
                   <div class="col-md-6 mb-3">
-                    <label for="email" class="form-label">邮箱</label>
+                    <label for="email" class="form-label">{{ getText('contact.form.email') }}</label>
                     <input type="email" class="form-control" id="email" v-model="form.email" required>
                   </div>
                 </div>
                 
                 <div class="mb-3">
-                  <label for="company" class="form-label">公司/项目名称</label>
+                  <label for="company" class="form-label">{{ getText('contact.form.company') }}</label>
                   <input type="text" class="form-control" id="company" v-model="form.company">
                 </div>
                 
                 <div class="mb-3">
-                  <label for="service" class="form-label">感兴趣的服务</label>
+                  <label for="service" class="form-label">{{ getText('contact.form.service') }}</label>
                   <select class="form-select" id="service" v-model="form.service" required>
-                    <option value="">请选择...</option>
-                    <option value="project">0-1项目搭建</option>
-                    <option value="community">社区资源整合</option>
-                    <option value="listing">Listing上所孵化</option>
-                    <option value="investment">投资机构推荐</option>
-                    <option value="trading">项目买卖</option>
-                    <option value="other">其他</option>
+                    <option value="">{{ getText('contact.form.selectService') }}</option>
+                    <option value="project">{{ getText('contact.form.services.project') }}</option>
+                    <option value="community">{{ getText('contact.form.services.community') }}</option>
+                    <option value="listing">{{ getText('contact.form.services.listing') }}</option>
+                    <option value="investment">{{ getText('contact.form.services.investment') }}</option>
+                    <option value="trading">{{ getText('contact.form.services.trading') }}</option>
+                    <option value="other">{{ getText('contact.form.services.other') }}</option>
                   </select>
                 </div>
                 
                 <div class="mb-4">
-                  <label for="message" class="form-label">项目描述</label>
-                  <textarea class="form-control" id="message" rows="5" v-model="form.message" placeholder="请详细描述您的项目和需求..."></textarea>
+                  <label for="message" class="form-label">{{ getText('contact.form.message') }}</label>
+                  <textarea class="form-control" id="message" rows="5" v-model="form.message" :placeholder="getText('contact.form.messagePlaceholder')"></textarea>
                 </div>
                 
                 <div class="text-center">
-                  <button type="submit" class="btn btn-primary btn-lg px-5">发送消息</button>
+                  <button type="submit" class="btn btn-primary btn-lg px-5">{{ getText('contact.form.submit') }}</button>
                 </div>
               </form>
             </div>
@@ -62,21 +62,21 @@
           <div class="col-md-4 text-center" data-aos="fade-up" data-aos-delay="100">
             <div class="contact-info">
               <i class="fas fa-envelope fa-2x mb-3"></i>
-              <h5>邮箱</h5>
+              <h5>{{ getText('contact.info.email') }}</h5>
               <p>contact@flylabs.io</p>
             </div>
           </div>
           <div class="col-md-4 text-center" data-aos="fade-up" data-aos-delay="200">
             <div class="contact-info">
               <i class="fab fa-telegram fa-2x mb-3"></i>
-              <h5>Telegram</h5>
+              <h5>{{ getText('contact.info.telegram') }}</h5>
               <p>@flylabs_official</p>
             </div>
           </div>
           <div class="col-md-4 text-center" data-aos="fade-up" data-aos-delay="300">
             <div class="contact-info">
               <i class="fab fa-twitter fa-2x mb-3"></i>
-              <h5>Twitter</h5>
+              <h5>{{ getText('contact.info.twitter') }}</h5>
               <p>@FlyLabsWeb3</p>
             </div>
           </div>
@@ -90,9 +90,12 @@
 import { ref } from 'vue'
 import Hyperspeed from '../components/Hyperspeed.vue'
 import { hyperspeedPresets } from '../components/HyperspeedPresets'
+import { useLanguage } from '../composables/useLanguage.js'
 
 // 使用预设配置
 const effectOptions = ref(hyperspeedPresets.one)
+
+const { getText } = useLanguage()
 
 // 表单数据
 const form = ref({

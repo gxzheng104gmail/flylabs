@@ -4,9 +4,9 @@
       <div class="row">
         <div class="col-12 text-center mb-5" data-aos="fade-up">
           <h2 class="section-title">
-            <span class="gradient-text">数据面板</span>
+            <span class="gradient-text">{{ getText('dataPanel.title') }}</span>
           </h2>
-          <p class="section-subtitle">实时展示加速器成果与数据</p>
+          <p class="section-subtitle">{{ getText('dataPanel.subtitle') }}</p>
         </div>
       </div>
       
@@ -50,7 +50,7 @@
       <div class="row">
         <div class="col-lg-8" data-aos="fade-right">
           <div class="chart-container">
-            <h4>项目孵化趋势</h4>
+            <h4>{{ getText('dataPanel.charts.trend') }}</h4>
             <div class="chart" ref="trendChart">
               <!-- 简化的图表展示 -->
               <svg viewBox="0 0 600 300" class="trend-svg">
@@ -96,7 +96,7 @@
         
         <div class="col-lg-4" data-aos="fade-left">
           <div class="stats-sidebar">
-            <h4>实时统计</h4>
+            <h4>{{ getText('dataPanel.charts.stats') }}</h4>
             
             <!-- 项目状态分布 -->
             <div class="status-distribution">
@@ -131,51 +131,32 @@
 
 <script>
 import { ref, onMounted, computed } from 'vue'
+import { useLanguage } from '../composables/useLanguage.js'
 
 export default {
   name: 'DataPanel',
   setup() {
+    const { getText } = useLanguage()
     const counterRefs = ref([])
     const trendChart = ref(null)
 
-    const metrics = ref([
-      {
-        icon: 'fas fa-rocket',
-        label: '孵化项目',
-        value: 127,
-        unit: '个',
-        change: '+15%',
+    const metricKeys = ['projects', 'investment', 'listed', 'partners']
+    const metricIcons = ['fas fa-rocket', 'fas fa-dollar-sign', 'fas fa-chart-line', 'fas fa-users']
+    const metricValues = [127, 50, 89, 156]
+    const metricChanges = ['+15%', '+28%', '+12%', '+8%']
+    const metricProgress = [85, 70, 92, 78]
+
+    const metrics = computed(() => {
+      return metricKeys.map((key, index) => ({
+        icon: metricIcons[index],
+        label: getText(`dataPanel.metrics.${key}.label`),
+        value: metricValues[index],
+        unit: getText(`dataPanel.metrics.${key}.unit`),
+        change: metricChanges[index],
         trend: 'up',
-        progress: 85
-      },
-      {
-        icon: 'fas fa-dollar-sign',
-        label: '总投资额',
-        value: 50,
-        unit: 'M',
-        change: '+28%',
-        trend: 'up',
-        progress: 70
-      },
-      {
-        icon: 'fas fa-chart-line',
-        label: '成功上市',
-        value: 89,
-        unit: '个',
-        change: '+12%',
-        trend: 'up',
-        progress: 92
-      },
-      {
-        icon: 'fas fa-users',
-        label: '合作伙伴',
-        value: 156,
-        unit: '家',
-        change: '+8%',
-        trend: 'up',
-        progress: 78
-      }
-    ])
+        progress: metricProgress[index]
+      }))
+    })
 
     const chartData = ref([
       { x: 50, y: 200 },
@@ -248,6 +229,7 @@ export default {
     })
 
     return {
+      getText,
       metrics,
       chartData,
       trendPath,

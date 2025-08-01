@@ -4,9 +4,9 @@
       <div class="row">
         <div class="col-12 text-center mb-5" data-aos="fade-up">
           <h2 class="section-title">
-            我们的<span class="gradient-text">服务矩阵</span>
+            {{ getText('serviceMatrix.title') }}<span class="gradient-text">{{ getText('serviceMatrix.titleHighlight') }}</span>
           </h2>
-          <p class="section-subtitle">全方位Web3项目孵化生态</p>
+          <p class="section-subtitle">{{ getText('serviceMatrix.subtitle') }}</p>
         </div>
       </div>
       
@@ -88,50 +88,33 @@
 
 <script>
 import { ref, computed } from 'vue'
+import { useLanguage } from '../composables/useLanguage.js'
 
 export default {
   name: 'ServiceMatrix',
   setup() {
+    const { getText } = useLanguage()
     const hoveredIndex = ref(-1)
     
-    const services = ref([
-      {
-        icon: 'fas fa-rocket',
-        title: '0-1项目搭建',
-        description: '从概念到实现，全程技术指导',
-        progress: 95
-      },
-      {
-        icon: 'fas fa-users',
-        title: '社区资源整合',
-        description: '丰富社区资源，NFT销售支持',
-        progress: 88
-      },
-      {
-        icon: 'fas fa-chart-line',
-        title: 'Listing上所孵化',
-        description: '对接顶级交易所，上币服务',
-        progress: 92
-      },
-      {
-        icon: 'fas fa-handshake',
-        title: '投资机构推荐',
-        description: '连接优质投资机构',
-        progress: 85
-      },
-      {
-        icon: 'fas fa-exchange-alt',
-        title: '项目买卖',
-        description: '优质项目资源交易',
-        progress: 78
-      },
-      {
-        icon: 'fas fa-shield-alt',
-        title: '风险控制',
-        description: '全流程风险评估与控制',
-        progress: 90
-      }
-    ])
+    const serviceKeys = ['project', 'community', 'listing', 'investment', 'trading', 'consulting']
+    const serviceIcons = [
+      'fas fa-rocket',
+      'fas fa-users', 
+      'fas fa-chart-line',
+      'fas fa-handshake',
+      'fas fa-exchange-alt',
+      'fas fa-shield-alt'
+    ]
+    const serviceProgress = [95, 88, 92, 85, 78, 90]
+    
+    const services = computed(() => {
+      return serviceKeys.map((key, index) => ({
+        icon: serviceIcons[index],
+        title: getText(`serviceMatrix.services.${key}.title`),
+        description: getText(`serviceMatrix.services.${key}.description`),
+        progress: serviceProgress[index]
+      }))
+    })
 
     const circumference = computed(() => 2 * Math.PI * 25)
     
@@ -153,6 +136,7 @@ export default {
     }
 
     return {
+      getText,
       services,
       circumference,
       connectionPaths,
