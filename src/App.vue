@@ -4,26 +4,26 @@
     <ParticleBackground />
     
     <!-- 导航栏 -->
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-      <div class="container">
-        <router-link class="navbar-brand" to="/">
+    <nav class="navbar-floating">
+      <div class="navbar-container">
+        <router-link class="navbar-brand-floating" to="/">
           <span class="brand-text">FlyLabs</span>
         </router-link>
         
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <button class="navbar-toggler-floating" type="button" @click="toggleNavbar">
           <span class="navbar-toggler-icon"></span>
         </button>
         
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ms-auto">
-            <li class="nav-item">
-              <router-link class="nav-link" to="/">首页</router-link>
+        <div class="navbar-collapse" :class="{ show: isNavbarOpen }" id="navbarNav">
+          <ul class="navbar-nav-floating">
+            <li class="nav-item-floating">
+              <router-link class="nav-link-floating" to="/">首页</router-link>
             </li>
-            <li class="nav-item">
-              <router-link class="nav-link" to="/services">服务</router-link>
+            <li class="nav-item-floating">
+              <router-link class="nav-link-floating" to="/services">服务</router-link>
             </li>
-            <li class="nav-item">
-              <router-link class="nav-link" to="/contact">联系我们</router-link>
+            <li class="nav-item-floating">
+              <router-link class="nav-link-floating" to="/contact">联系我们</router-link>
             </li>
           </ul>
         </div>
@@ -54,40 +54,272 @@
 </template>
 
 <script>
+import { ref } from 'vue'
 import ParticleBackground from './components/ParticleBackground.vue'
 
 export default {
   name: 'App',
   components: {
     ParticleBackground
+  },
+  setup() {
+    const isNavbarOpen = ref(false)
+    
+    const toggleNavbar = () => {
+      isNavbarOpen.value = !isNavbarOpen.value
+    }
+    
+    return {
+      isNavbarOpen,
+      toggleNavbar
+    }
   }
 }
 </script>
 
 <style>
-/* 导航栏样式 */
-.navbar {
-  background: rgba(10, 15, 46, 0.9);
-  backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(0, 212, 255, 0.2);
+/* 悬浮导航栏样式 */
+.navbar-floating {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  width: 90%;
+  max-width: 1200px;
+  background: rgba(10, 15, 46, 0.15);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  border: 1px solid rgba(0, 212, 255, 0.3);
+  border-radius: 50px;
+  box-shadow: 
+    0 8px 32px rgba(0, 212, 255, 0.15),
+    0 4px 16px rgba(139, 92, 246, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  animation: navbar-glow 4s ease-in-out infinite;
+}
+
+.navbar-floating:hover {
+  background: rgba(10, 15, 46, 0.25);
+  border-color: rgba(0, 212, 255, 0.5);
+  box-shadow: 
+    0 12px 48px rgba(0, 212, 255, 0.25),
+    0 6px 24px rgba(139, 92, 246, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  transform: translateX(-50%) translateY(-2px);
+}
+
+@keyframes navbar-glow {
+  0%, 100% {
+    box-shadow: 
+      0 8px 32px rgba(0, 212, 255, 0.15),
+      0 4px 16px rgba(139, 92, 246, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+  50% {
+    box-shadow: 
+      0 12px 40px rgba(0, 212, 255, 0.2),
+      0 6px 20px rgba(139, 92, 246, 0.15),
+      inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  }
+}
+
+.navbar-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 30px;
+  position: relative;
+}
+
+.navbar-brand-floating {
+  text-decoration: none;
+  z-index: 1;
 }
 
 .brand-text {
   font-size: 1.8rem;
   font-weight: bold;
-  background: linear-gradient(45deg, #00d4ff, #8b5cf6);
+  background: linear-gradient(45deg, #00d4ff, #8b5cf6, #10b981);
+  background-size: 200% 200%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  animation: gradient-flow 3s ease-in-out infinite;
+  filter: drop-shadow(0 0 10px rgba(0, 212, 255, 0.3));
 }
 
-.nav-link {
-  color: rgba(255, 255, 255, 0.8) !important;
-  transition: color 0.3s ease;
+.navbar-collapse {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 }
 
-.nav-link:hover {
+.navbar-nav-floating {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 8px;
+  align-items: center;
+}
+
+.nav-item-floating {
+  list-style: none;
+}
+
+.nav-link-floating {
+  color: rgba(255, 255, 255, 0.9) !important;
+  text-decoration: none;
+  padding: 8px 20px;
+  border-radius: 25px;
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  position: relative;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.nav-link-floating::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, rgba(0, 212, 255, 0.2), rgba(139, 92, 246, 0.2));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: 25px;
+  z-index: -1;
+}
+
+.nav-link-floating:hover {
   color: #00d4ff !important;
+  text-shadow: 0 0 15px rgba(0, 212, 255, 0.5);
+  transform: translateY(-1px);
+}
+
+.nav-link-floating:hover::before {
+  opacity: 1;
+}
+
+.nav-link-floating.router-link-active {
+  color: #00d4ff !important;
+  background: rgba(0, 212, 255, 0.15);
+  text-shadow: 0 0 10px rgba(0, 212, 255, 0.4);
+}
+
+.navbar-toggler-floating {
+  display: none;
+  background: none;
+  border: 2px solid rgba(0, 212, 255, 0.5);
+  border-radius: 8px;
+  padding: 6px 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.navbar-toggler-floating:hover {
+  background: rgba(0, 212, 255, 0.1);
+  border-color: #00d4ff;
+}
+
+.navbar-toggler-icon {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: #00d4ff;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.navbar-toggler-icon::before,
+.navbar-toggler-icon::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 2px;
+  background: #00d4ff;
+  transition: all 0.3s ease;
+}
+
+.navbar-toggler-icon::before {
+  top: -6px;
+}
+
+.navbar-toggler-icon::after {
+  bottom: -6px;
+}
+
+/* 移动端响应式 */
+@media (max-width: 768px) {
+  .navbar-floating {
+    width: 95%;
+    top: 15px;
+  }
+  
+  .navbar-container {
+    padding: 10px 20px;
+  }
+  
+  .navbar-toggler-floating {
+    display: block;
+  }
+  
+  .navbar-collapse {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: rgba(10, 15, 46, 0.95);
+    backdrop-filter: blur(25px);
+    border-radius: 20px;
+    margin-top: 10px;
+    padding: 20px;
+    box-shadow: 0 8px 32px rgba(0, 212, 255, 0.2);
+    border: 1px solid rgba(0, 212, 255, 0.3);
+    display: none;
+    justify-content: center;
+  }
+  
+  .navbar-collapse.show {
+    display: flex;
+  }
+  
+  .navbar-nav-floating {
+    flex-direction: column;
+    gap: 5px;
+    width: 100%;
+  }
+  
+  .nav-link-floating {
+    text-align: center;
+    padding: 12px 20px;
+    width: 100%;
+  }
+  
+  .brand-text {
+    font-size: 1.5rem;
+  }
+}
+
+/* 超小屏幕优化 */
+@media (max-width: 480px) {
+  .navbar-floating {
+    width: 98%;
+    top: 10px;
+  }
+  
+  .navbar-container {
+    padding: 8px 15px;
+  }
+  
+  .brand-text {
+    font-size: 1.3rem;
+  }
 }
 
 /* 页脚样式 */
@@ -96,5 +328,17 @@ export default {
   color: rgba(255, 255, 255, 0.8);
   padding: 3rem 0 1rem;
   border-top: 1px solid rgba(0, 212, 255, 0.2);
+  margin-top: 80px; /* 为悬浮导航栏留出空间 */
+}
+
+/* 主要内容区域调整 */
+#app {
+  padding-top: 100px; /* 为悬浮导航栏留出空间 */
+}
+
+@media (max-width: 768px) {
+  #app {
+    padding-top: 80px;
+  }
 }
 </style>

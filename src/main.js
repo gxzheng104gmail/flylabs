@@ -6,6 +6,7 @@ import AOS from 'aos'
 
 // 样式导入
 import 'bootstrap/dist/css/bootstrap.min.css'
+import 'bootstrap/dist/js/bootstrap.bundle.min.js'
 import 'aos/dist/aos.css'
 import './assets/styles/main.css'
 
