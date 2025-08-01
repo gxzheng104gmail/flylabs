@@ -121,23 +121,7 @@
               </div>
             </div>
             
-            <!-- 最新动态 -->
-            <div class="recent-activities">
-              <h5>最新动态</h5>
-              <div 
-                v-for="(activity, index) in recentActivities"
-                :key="index"
-                class="activity-item"
-              >
-                <div class="activity-icon">
-                  <i :class="activity.icon"></i>
-                </div>
-                <div class="activity-content">
-                  <p>{{ activity.description }}</p>
-                  <span class="activity-time">{{ activity.time }}</span>
-                </div>
-              </div>
-            </div>
+
           </div>
         </div>
       </div>
@@ -226,28 +210,7 @@ export default {
       { name: '筹备中', count: 15, percentage: 12, color: '#6b7280' }
     ])
 
-    const recentActivities = ref([
-      {
-        icon: 'fas fa-rocket',
-        description: 'DeFiProtocol 成功在Binance上市',
-        time: '2小时前'
-      },
-      {
-        icon: 'fas fa-handshake',
-        description: '与红杉资本达成战略合作',
-        time: '5小时前'
-      },
-      {
-        icon: 'fas fa-users',
-        description: 'MetaNFT 社区用户突破10万',
-        time: '1天前'
-      },
-      {
-        icon: 'fas fa-chart-line',
-        description: 'GameFi World 完成A轮融资',
-        time: '2天前'
-      }
-    ])
+
 
     // 数字动画
     const animateCounters = () => {
@@ -289,7 +252,6 @@ export default {
       chartData,
       trendPath,
       projectStatus,
-      recentActivities,
       counterRefs,
       trendChart
     }
@@ -488,43 +450,7 @@ export default {
   transition: width 1s ease;
 }
 
-.recent-activities {
-  max-height: 300px;
-  overflow-y: auto;
-}
 
-.activity-item {
-  display: flex;
-  gap: 1rem;
-  margin-bottom: 1rem;
-  padding: 1rem;
-  background: rgba(255, 255, 255, 0.03);
-  border-radius: 10px;
-  transition: background 0.3s ease;
-}
-
-.activity-item:hover {
-  background: rgba(255, 255, 255, 0.07);
-}
-
-.activity-icon {
-  color: #00d4ff;
-  font-size: 1.2rem;
-  width: 24px;
-  flex-shrink: 0;
-}
-
-.activity-content p {
-  color: rgba(255, 255, 255, 0.9);
-  margin: 0 0 0.3rem 0;
-  font-size: 0.9rem;
-  line-height: 1.4;
-}
-
-.activity-time {
-  color: rgba(255, 255, 255, 0.5);
-  font-size: 0.8rem;
-}
 
 /* 响应式设计 */
 @media (max-width: 768px) {
