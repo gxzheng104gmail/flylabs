@@ -8,12 +8,12 @@
             <br>Web3加速器
           </h1>
           <p class="hero-subtitle">
-            从0到1的项目孵化，助力Web3创新项目腾飞
+            从0到1激活飞轮效应，助力Web3创新腾飞！
           </p>
           <div class="hero-features">
             <div class="feature-item" v-for="feature in features" :key="feature">
-              <i class="fas fa-check-circle feature-icon"></i>
-              <span class="feature-text">{{ feature }}</span>
+              <i class="fas fa-check-circle"></i>
+              <span>{{ feature }}</span>
             </div>
           </div>
           <div class="hero-buttons">
@@ -89,16 +89,15 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   gap: 1rem;
-  margin-bottom: 3rem;
+  margin: 0 auto 3rem auto;
   width: 100%;
   max-width: 500px;
-  margin-left: auto;
-  margin-right: auto;
+  padding: 0 1rem;
 }
 
 .feature-item {
-  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -107,6 +106,7 @@ export default {
   font-weight: 500;
   text-align: center;
   width: 100%;
+  max-width: 100%;
   background: rgba(255, 255, 255, 0.05);
   padding: 1rem 2rem;
   border-radius: 30px;
@@ -114,6 +114,8 @@ export default {
   backdrop-filter: blur(10px);
   transition: all 0.3s ease;
   min-height: 60px;
+  box-sizing: border-box;
+  margin: 0 auto;
 }
 
 .feature-item:hover {
@@ -123,17 +125,19 @@ export default {
   box-shadow: 0 8px 25px rgba(0, 212, 255, 0.2);
 }
 
-.feature-icon {
-  position: absolute;
-  left: 1.5rem;
+.feature-item i {
   color: #10b981;
+  margin-right: 1rem;
   font-size: 1.2rem;
+  min-width: 20px;
+  flex-shrink: 0;
 }
 
-.feature-text {
-  width: 100%;
+.feature-item span {
+  flex: 1;
   text-align: center;
-  padding: 0 3rem;
+  word-wrap: break-word;
+  line-height: 1.4;
 }
 
 .hero-buttons {
@@ -183,37 +187,58 @@ export default {
   box-shadow: 0 15px 35px rgba(0, 212, 255, 0.3);
 }
 
+/* 平板设备 */
+@media (max-width: 992px) {
+  .hero-title {
+    font-size: 3.2rem;
+  }
+  
+  .hero-features {
+    max-width: 450px;
+  }
+  
+  .feature-item {
+    padding: 1rem 1.8rem;
+  }
+}
+
+/* 手机设备 */
 @media (max-width: 768px) {
   .hero-title {
     font-size: 2.8rem;
+    margin-bottom: 1.5rem;
   }
   
   .hero-subtitle {
     font-size: 1.2rem;
+    margin-bottom: 2rem;
+    padding: 0 1rem;
   }
   
   .hero-features {
-    max-width: 350px;
+    max-width: 100%;
+    padding: 0 1rem;
   }
   
   .feature-item {
     font-size: 1rem;
-    padding: 0.8rem 1.5rem;
-    min-height: 50px;
+    padding: 1rem 1.5rem;
+    min-height: 60px;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 350px;
   }
   
-  .feature-icon {
-    left: 1rem;
-    font-size: 1rem;
-  }
-  
-  .feature-text {
-    padding: 0 2.5rem;
+  .feature-item span {
+    font-size: 0.95rem;
+    line-height: 1.5;
   }
   
   .hero-buttons {
     flex-direction: column;
     align-items: center;
+    gap: 1rem;
+    padding: 0 1rem;
   }
   
   .btn-lg {
@@ -221,6 +246,39 @@ export default {
     padding: 0.8rem 2rem;
     width: 100%;
     max-width: 300px;
+  }
+}
+
+/* 小屏幕手机 */
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 2.2rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.1rem;
+  }
+  
+  .hero-features {
+    padding: 0 0.5rem;
+  }
+  
+  .feature-item {
+    font-size: 0.9rem;
+    padding: 0.8rem 1rem;
+    min-height: 55px;
+    max-width: 320px;
+  }
+  
+  .feature-item i {
+    font-size: 1rem;
+    margin-right: 0.8rem;
+  }
+  
+  .btn-lg {
+    font-size: 0.9rem;
+    padding: 0.7rem 1.5rem;
+    max-width: 280px;
   }
 }
 </style>
