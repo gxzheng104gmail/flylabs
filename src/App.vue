@@ -1,5 +1,23 @@
 <template>
   <div id="app">
+    <!-- 光标特效 -->
+    <SplashCursor
+      :SIM_RESOLUTION="128"
+      :DYE_RESOLUTION="1440"
+      :CAPTURE_RESOLUTION="512"
+      :DENSITY_DISSIPATION="3.5"
+      :VELOCITY_DISSIPATION="2"
+      :PRESSURE="0.1"
+      :PRESSURE_ITERATIONS="20"
+      :CURL="3"
+      :SPLAT_RADIUS="0.2"
+      :SPLAT_FORCE="6000"
+      :SHADING="true"
+      :COLOR_UPDATE_SPEED="10"
+      :BACK_COLOR="{ r: 0.5, g: 0, b: 0 }"
+      :TRANSPARENT="true"
+    />
+    
     <!-- 粒子背景 -->
     <ParticleBackground />
     
@@ -56,11 +74,13 @@
 <script>
 import { ref } from 'vue'
 import ParticleBackground from './components/ParticleBackground.vue'
+import SplashCursor from './components/SplashCursor.vue'
 
 export default {
   name: 'App',
   components: {
-    ParticleBackground
+    ParticleBackground,
+    SplashCursor
   },
   setup() {
     const isNavbarOpen = ref(false)
@@ -258,11 +278,15 @@ export default {
 @media (max-width: 768px) {
   .navbar-floating {
     width: 95%;
+    max-width: calc(100vw - 20px);
     top: 15px;
+    box-sizing: border-box;
   }
   
   .navbar-container {
     padding: 10px 20px;
+    width: 100%;
+    box-sizing: border-box;
   }
   
   .navbar-toggler-floating {
@@ -329,16 +353,32 @@ export default {
   padding: 3rem 0 1rem;
   border-top: 1px solid rgba(0, 212, 255, 0.2);
   margin-top: 80px; /* 为悬浮导航栏留出空间 */
+  position: relative;
+  z-index: 1; /* 确保页脚在背景特效之上 */
 }
 
 /* 主要内容区域调整 */
 #app {
-  padding-top: 100px; /* 为悬浮导航栏留出空间 */
+  padding-top: 0; /* 去掉顶部间距 */
+  position: relative;
+  z-index: 0; /* 确保主要内容在背景之上 */
 }
 
 @media (max-width: 768px) {
   #app {
-    padding-top: 80px;
+    padding-top: 0; /* 移动端也去掉顶部间距 */
+    z-index: 10 !important; /* 移动端确保内容层级最高 */
+  }
+  
+  /* 确保移动端页脚正确显示 */
+  .footer {
+    z-index: 15 !important;
+    background: rgba(10, 15, 46, 0.98) !important; /* 增加背景不透明度 */
+  }
+  
+  /* 确保移动端导航栏层级最高 */
+  .navbar-floating {
+    z-index: 100 !important;
   }
 }
 </style>

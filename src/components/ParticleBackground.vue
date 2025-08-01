@@ -336,4 +336,45 @@ export default {
     display: none;
   }
 }
+
+/* 移动端优化 */
+@media (max-width: 768px) {
+  .particle-background {
+    z-index: -10; /* 在移动端降低更多层级 */
+  }
+  
+  /* 减少移动端特效复杂度 */
+  .hexagon {
+    animation-duration: 20s; /* 减慢动画提升性能 */
+  }
+  
+  .circle {
+    animation-duration: 24s; /* 减慢动画提升性能 */
+  }
+  
+  /* 简化移动端渐变效果 */
+  .particle-background::before {
+    opacity: 0.5; /* 降低透明度 */
+  }
+  
+  .particle-background::after {
+    display: none; /* 移动端隐藏鼠标交互效果 */
+  }
+}
+
+/* 超小屏幕进一步优化 */
+@media (max-width: 480px) {
+  .particle-background {
+    z-index: -20; /* 进一步降低层级 */
+  }
+  
+  /* 减少粒子数量 */
+  .hexagon:nth-child(n+6) {
+    display: none; /* 隐藏部分粒子 */
+  }
+  
+  .circle:nth-child(n+11) {
+    display: none; /* 隐藏部分圆点 */
+  }
+}
 </style>

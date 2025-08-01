@@ -48,8 +48,13 @@ export default {
   position: relative;
   overflow: hidden;
   min-height: 100vh;
+  width: 100%;
+  max-width: 100vw; /* 防止宽度溢出 */
   display: flex;
   align-items: center;
+  margin-top: 0;
+  padding-top: 0;
+  box-sizing: border-box;
 }
 
 .hero-title {
@@ -212,15 +217,24 @@ export default {
 
 /* 手机设备 */
 @media (max-width: 768px) {
+  .hero-section {
+    max-width: 100vw;
+    overflow-x: hidden;
+    padding: 0 10px;
+  }
+  
   .hero-title {
     font-size: 2.8rem;
     margin-bottom: 1.5rem;
+    padding: 0 1rem;
+    word-wrap: break-word;
   }
   
   .hero-subtitle {
     font-size: 1.2rem;
     margin-bottom: 2rem;
     padding: 0 1rem;
+    max-width: 100%;
   }
   
   .hero-features {
@@ -234,13 +248,15 @@ export default {
     min-height: 60px;
     margin: 0 auto;
     width: 100%;
-    max-width: 350px;
+    max-width: calc(100vw - 40px);
+    box-sizing: border-box;
   }
   
   .feature-item span {
     font-size: 0.95rem;
     line-height: 1.5;
     padding: 0 2.8rem;
+    word-wrap: break-word;
   }
   
   .hero-buttons {
@@ -254,7 +270,8 @@ export default {
     font-size: 1rem;
     padding: 0.8rem 2rem;
     width: 100%;
-    max-width: 300px;
+    max-width: calc(100vw - 40px);
+    box-sizing: border-box;
   }
 }
 
