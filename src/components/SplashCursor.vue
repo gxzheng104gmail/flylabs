@@ -1265,7 +1265,6 @@ onMounted(() => {
   });
 });
 </script>
-
 <style scoped>
 .splash-cursor-container {
   position: fixed;
@@ -1273,9 +1272,9 @@ onMounted(() => {
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: -2; /* 降低层级，避免遮挡其他内容 */
+  z-index: 9999; /* 设置为最高层级，确保在所有内容之上 */
   pointer-events: none;
-  overflow: hidden; /* 防止溢出 */
+  overflow: hidden;
 }
 
 .splash-cursor-canvas {
@@ -1285,21 +1284,34 @@ onMounted(() => {
   width: 100%;
   height: 100%;
   display: block;
-  max-width: 100%; /* 防止移动端溢出 */
+  max-width: 100%;
   max-height: 100%;
 }
 
-/* 移动端优化 */
-@media (max-width: 768px) {
+/* 桌面端优化 */
+@media (min-width: 769px) {
   .splash-cursor-container {
-    display: none; /* 移动端隐藏，提升性能 */
+    z-index: 9999; /* 桌面端显示，确保在最顶层 */
   }
 }
 
-/* 超小屏幕完全隐藏 */
+/* 移动端优化 - 降低性能消耗 */
+@media (max-width: 768px) {
+  .splash-cursor-container {
+    z-index: 9999; /* 移动端也保持最高层级 */
+    opacity: 0.7; /* 降低透明度 */
+  }
+}
+
+/* 超小屏幕进一步优化 */
 @media (max-width: 480px) {
   .splash-cursor-container {
-    display: none !important;
+    opacity: 0.5; /* 进一步降低透明度 */
   }
+}
+
+/* 确保特效不会影响交互元素 */
+.splash-cursor-container * {
+  pointer-events: none;
 }
 </style>

@@ -80,7 +80,8 @@
           </div>
           <div class="col-md-6">
             <h6>{{ getText('footer.contactTitle') }}</h6>
-            <p>Email: contact@flylabs.io</p>
+            <p>Email: acoki@flylabs.one</p>
+            <p>Email: jim@flylabs.one</p>
           </div>
         </div>
         <hr>
@@ -433,7 +434,7 @@ export default {
 #app {
   padding-top: 0; /* 去掉顶部间距 */
   position: relative;
-  z-index: 0; /* 确保主要内容在背景之上 */
+  z-index: 1; /* 降低主内容层级，让光标特效在最顶层 */
 }
 
 @media (max-width: 768px) {

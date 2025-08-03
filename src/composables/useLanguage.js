@@ -14,14 +14,14 @@ const texts = {
     },
     // 底部栏
     footer: {
-      description: 'Web3项目加速器，助力区块链创新',
+      description: 'Web3 Listing 加速计划，专注区块链项目上所服务',
       contactTitle: '联系我们',
       copyright: '版权所有'
     },
     // 首页Hero部分
     hero: {
       title: 'FlyLabs',
-      subtitle: 'Web3加速器',
+      subtitle: 'Web3 Listing 加速计划',
       description: '从0到1激活飞轮效应，助力Web3创新腾飞！',
       startCooperation: '开始合作',
       learnMore: '了解更多',
@@ -32,35 +32,63 @@ const texts = {
         '成熟的商业落地经验'
       ]
     },
+    // 核心服务特效
+    coreServices: {
+      title: '我们的',
+      titleHighlight: '核心服务',
+      subtitle: '点击文字体验物理引擎特效',
+      services: [
+        'Listing上所加速全程顾问',
+        '前十交易所Listing孵化加速',
+        '0-1项目内容优化包装',
+        '项目数据优化',
+        '项目技术开发',
+        'KOL及媒体宣发',
+        '项目运营社区搭建',
+        '社区资源整合',
+        'Marketing',
+        'PR合作',
+        '优质项目合作',
+        '链接优质投资机构',
+        '优质项目资源交易'
+      ],
+      highlights: [
+        'Listing上所加速全程顾问',
+        '0-1项目内容优化包装',
+        '项目技术开发',
+        'KOL及媒体宣发',
+        '优质项目资源交易'
+      ]
+    },
     // 服务矩阵
     serviceMatrix: {
       title: '我们的',
       titleHighlight: '服务矩阵',
       subtitle: '全方位Web3项目孵化生态',
       services: {
+        listing: {
+          title: 'Listing上市加速',
+          description: '对接顶级交易所，全程指导上币服务'
+        },
         project: {
-          title: '0-1项目搭建',
-          description: '从概念到实现，全程技术指导'
+          title: '0-1项目技术开发',
+          description: '从概念到实现搭建项目，全程技术指导'
         },
         community: {
           title: '社区资源整合',
-          description: '丰富社区资源，NFT销售支持'
-        },
-        listing: {
-          title: 'Listing上所孵化',
-          description: '对接顶级交易所，上币服务'
+          description: '丰富社区资源，PR及kol宣发及销售指导'
         },
         investment: {
-          title: '投资机构推荐',
-          description: '连接优质投资机构'
-        },
-        trading: {
-          title: '项目买卖',
-          description: '优质项目资源交易'
+          title: '优质资源链接',
+          description: '护航Marketing，链接优质资源及项目互动'
         },
         consulting: {
-          title: '风险控制',
-          description: '全流程风险评估与控制'
+          title: '推荐优质基金会',
+          description: '链接优质投资机构，赋能项目方'
+        },
+        trading: {
+          title: '优质项目资源交易',
+          description: '为项目方交易安全，保驾护航'
         }
       }
     },
@@ -190,14 +218,14 @@ const texts = {
     },
     // Footer
     footer: {
-      description: 'Web3 Project Accelerator, Empowering Blockchain Innovation',
+      description: 'Web3 Listing Acceleration Program, Focused on Blockchain Project Listing Services',
       contactTitle: 'Contact Us',
       copyright: 'All rights reserved'
     },
     // Hero Section
     hero: {
       title: 'FlyLabs',
-      subtitle: 'Web3 Accelerator',
+      subtitle: 'Web3 Listing Acceleration Program',
       description: 'Activate the flywheel effect from 0 to 1, empowering Web3 innovation to soar!',
       startCooperation: 'Start Cooperation',
       learnMore: 'Learn More',
@@ -208,35 +236,63 @@ const texts = {
         'Mature business implementation experience'
       ]
     },
+    // Core Services Effect
+    coreServices: {
+      title: 'Our ',
+      titleHighlight: 'Core Services',
+      subtitle: 'Click text to experience physics engine effects',
+      services: [
+        'Full-process Listing Acceleration Consulting',
+        'Top 10 Exchange Listing Incubation Acceleration',
+        '0-1 Project Content Optimization Packaging',
+        'Project Data Optimization',
+        'Project Technical Development',
+        'KOL and Media Promotion',
+        'Project Operations Community Building',
+        'Community Resource Integration',
+        'Marketing',
+        'PR Cooperation',
+        'Quality Project Cooperation',
+        'Connect Quality Investment Institutions',
+        'Quality Project Resource Trading'
+      ],
+      highlights: [
+        'Full-process Listing Acceleration Consulting',
+        '0-1 Project Content Optimization Packaging',
+        'Project Technical Development',
+        'KOL and Media Promotion',
+        'Quality Project Resource Trading'
+      ]
+    },
     // Service Matrix
     serviceMatrix: {
       title: 'Our ',
       titleHighlight: 'Service Matrix',
       subtitle: 'Comprehensive Web3 Project Incubation Ecosystem',
       services: {
+        listing: {
+          title: 'Listing Acceleration',
+          description: 'Connect with top exchanges, full guidance for listing services'
+        },
         project: {
-          title: '0-1 Project Setup',
-          description: 'From concept to implementation, full technical guidance'
+          title: '0-1 Project Technical Development',
+          description: 'Building projects from concept to implementation, full technical guidance'
         },
         community: {
           title: 'Community Resource Integration',
-          description: 'Rich community resources, NFT sales support'
-        },
-        listing: {
-          title: 'Listing Exchange Incubation',
-          description: 'Connect with top exchanges, listing services'
+          description: 'Rich community resources, PR and KOL promotion and sales guidance'
         },
         investment: {
-          title: 'Investment Institution Recommendations',
-          description: 'Connect with quality investment institutions'
-        },
-        trading: {
-          title: 'Project Trading',
-          description: 'Quality project resources trading'
+          title: 'High-Quality Resource Connection',
+          description: 'Escorting Marketing, connecting high-quality resources and project interaction'
         },
         consulting: {
-          title: 'Risk Control',
-          description: 'Full-process risk assessment and control'
+          title: 'Recommendation of High-Quality Foundations',
+          description: 'Connecting with high-quality investment institutions, empowering project parties'
+        },
+        trading: {
+          title: 'High-Quality Project Resource Trading',
+          description: 'Ensuring transaction security for project parties'
         }
       }
     },

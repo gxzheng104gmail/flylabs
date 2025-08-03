@@ -63,21 +63,24 @@
             <div class="contact-info">
               <i class="fas fa-envelope fa-2x mb-3"></i>
               <h5>{{ getText('contact.info.email') }}</h5>
-              <p>contact@flylabs.io</p>
+              <p>acoki@flylabs.one</p>
+              <p>jim@flylabs.one</p>
             </div>
           </div>
           <div class="col-md-4 text-center" data-aos="fade-up" data-aos-delay="200">
             <div class="contact-info">
               <i class="fab fa-telegram fa-2x mb-3"></i>
               <h5>{{ getText('contact.info.telegram') }}</h5>
-              <p>@flylabs_official</p>
+              <p>@ListingAcoki</p>
+              <p>@ListingJim</p>
             </div>
           </div>
           <div class="col-md-4 text-center" data-aos="fade-up" data-aos-delay="300">
             <div class="contact-info">
               <i class="fab fa-twitter fa-2x mb-3"></i>
               <h5>{{ getText('contact.info.twitter') }}</h5>
-              <p>@FlyLabsWeb3</p>
+              <p>@FlyLabs_one</p>
+              <p>&nbsp;</p>
             </div>
           </div>
         </div>

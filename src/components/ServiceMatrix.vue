@@ -96,16 +96,16 @@ export default {
     const { getText } = useLanguage()
     const hoveredIndex = ref(-1)
     
-    const serviceKeys = ['project', 'community', 'listing', 'investment', 'trading', 'consulting']
+    const serviceKeys = ['listing', 'project', 'community', 'investment', 'consulting', 'trading']
     const serviceIcons = [
+      'fas fa-chart-line',
       'fas fa-rocket',
       'fas fa-users', 
-      'fas fa-chart-line',
       'fas fa-handshake',
-      'fas fa-exchange-alt',
-      'fas fa-shield-alt'
+      'fas fa-shield-alt',
+      'fas fa-exchange-alt'
     ]
-    const serviceProgress = [95, 88, 92, 85, 78, 90]
+    const serviceProgress = [92, 95, 88, 85, 90, 78]
     
     const services = computed(() => {
       return serviceKeys.map((key, index) => ({
@@ -160,6 +160,20 @@ export default {
   font-weight: 700;
   color: white;
   margin-bottom: 1rem;
+}
+
+.gradient-text {
+  background: linear-gradient(45deg, #00d4ff, #8b5cf6, #10b981);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradient-flow 3s ease-in-out infinite;
+}
+
+@keyframes gradient-flow {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
 }
 
 .section-subtitle {
