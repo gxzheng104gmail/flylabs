@@ -63,7 +63,7 @@
             <div class="contact-info">
               <i class="fas fa-envelope fa-2x mb-3"></i>
               <h5>{{ getText('contact.info.email') }}</h5>
-              <p>acoki@flylabs.one</p>
+              <p>official@flylabs.one</p>
               <p>jim@flylabs.one</p>
             </div>
           </div>
