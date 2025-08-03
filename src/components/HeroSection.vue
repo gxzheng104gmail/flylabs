@@ -41,9 +41,10 @@ export default {
   width: 100%;
   max-width: 100vw; /* 防止宽度溢出 */
   display: flex;
-  align-items: center;
+  align-items: flex-start; /* 改为顶部对齐 */
+  justify-content: center; /* 水平居中 */
   margin-top: 0;
-  padding-top: 120px; /* 为悬浮导航栏留出空间 */
+  padding-top: 5px; /* 减少顶部间距，让内容更靠近导航栏 */
   box-sizing: border-box;
 }
 
@@ -134,7 +135,7 @@ export default {
   .hero-section {
     max-width: 100vw;
     overflow-x: hidden;
-    padding: 100px 10px 0 10px; /* 为移动端导航栏留出空间 */
+    padding: 10px 10px 0 10px; /* 为移动端导航栏留出空间，更靠近导航栏 */
   }
   
   .hero-title {
@@ -167,7 +168,7 @@ export default {
 /* 小屏幕手机 */
 @media (max-width: 480px) {
   .hero-section {
-    padding-top: 90px; /* 小屏幕手机的顶部间距 */
+    padding-top: 5px; /* 小屏幕手机的顶部间距，更靠近导航栏 */
   }
   
   .hero-title {
