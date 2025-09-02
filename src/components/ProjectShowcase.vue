@@ -118,6 +118,9 @@ import MEXCLogo from '@/assets/images/logos/exchanges/MEXC.jpg'
 import BingXLogo from '@/assets/images/logos/exchanges/BingX.jpg'
 import LBankLogo from '@/assets/images/logos/exchanges/LBank.jpg'
 import WeexLogo from '@/assets/images/logos/exchanges/Weex.jpg'
+import UpbitLogo from '@/assets/images/logos/exchanges/upbit.png'
+import BithumbLogo from '@/assets/images/logos/exchanges/bithumb.png'
+import HuobiLogo from '@/assets/images/logos/exchanges/huobi.png'
 
 export default {
   name: 'ProjectShowcase',
@@ -125,12 +128,15 @@ export default {
     const { getText } = useLanguage()
     const activeIndex = ref(-1)
     
-    const exchangeKeys = ['binance', 'bybit', 'bitget', 'kucoin', 'gate', 'mexc', 'bingx', 'lbank', 'weex']
+    const exchangeKeys = ['binance', 'upbit', 'bithumb', 'bybit', 'bitget', 'huobi', 'kucoin', 'gate', 'mexc', 'bingx', 'lbank', 'weex']
     
     const exchangesBase = [
       { name: 'Binance', logo: 'B', logoImg: BinanceLogo, volume: '$76.5B', users: '120M+', color: '#f3ba2f' },
+      { name: 'Upbit', logo: 'UP', logoImg: UpbitLogo, volume: '$3.2B', users: '8M+', color: '#1b49ff' },
+      { name: 'Bithumb', logo: 'BH', logoImg: BithumbLogo, volume: '$2.7B', users: '6M+', color: '#f26a1f' },
       { name: 'Bybit', logo: 'BY', logoImg: BybitLogo, volume: '$15.2B', users: '20M+', color: '#f7a600' },
       { name: 'Bitget', logo: 'BG', logoImg: BitgetLogo, volume: '$8.9B', users: '8M+', color: '#00d4ff' },
+      { name: 'Huobi', logo: 'HB', logoImg: HuobiLogo, volume: '$4.5B', users: '10M+', color: '#1c6cff' },
       { name: 'KuCoin', logo: 'KC', logoImg: KuCoinLogo, volume: '$12.3B', users: '10M+', color: '#24ae8f' },
       { name: 'Gate.io', logo: 'GT', logoImg: GateLogo, volume: '$6.7B', users: '6M+', color: '#5d2dd5' },
       { name: 'MEXC', logo: 'MX', logoImg: MEXCLogo, volume: '$4.2B', users: '5M+', color: '#07d77b' },
@@ -171,8 +177,11 @@ export default {
     const getCardColor = (index) => {
       const colors = [
         '243, 186, 47',    // Binance yellow
+        '27, 73, 255',     // Upbit blue
+        '242, 106, 31',    // Bithumb orange
         '247, 166, 0',     // Bybit orange
         '0, 212, 255',     // Bitget cyan
+        '28, 108, 255',    // Huobi blue
         '36, 174, 143',    // KuCoin green
         '93, 45, 213',     // Gate purple
         '7, 215, 123',     // MEXC green
@@ -208,8 +217,11 @@ export default {
       const exchangeName = event.target.alt.replace(' Logo', '')
       const logoText = {
         'Binance': 'B',
+        'Upbit': 'UP',
+        'Bithumb': 'BH',
         'Bybit': 'BY', 
         'Bitget': 'BG',
+        'Huobi': 'HB',
         'KuCoin': 'KC',
         'Gate.io': 'GT',
         'MEXC': 'MX',

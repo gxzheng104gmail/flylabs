@@ -109,8 +109,11 @@ const texts = {
       },
       exchanges: {
         binance: '全球最大的加密货币交易平台',
+        upbit: '韩国领先的加密货币交易平台',
+        bithumb: '韩国老牌数字资产交易所',
         bybit: '领先的衍生品交易平台',
         bitget: '专业的数字资产交易服务',
+        huobi: '全球综合性数字资产服务平台',
         kucoin: '全球化的数字货币交易服务平台',
         gate: '区块链资产国际站',
         mexc: '数字资产交易平台',
@@ -313,8 +316,11 @@ const texts = {
       },
       exchanges: {
         binance: 'World\'s largest cryptocurrency trading platform',
+        upbit: 'Leading cryptocurrency exchange in South Korea',
+        bithumb: 'Established digital asset exchange in South Korea',
         bybit: 'Leading derivatives trading platform',
         bitget: 'Professional digital asset trading services',
+        huobi: 'Global comprehensive digital asset service platform',
         kucoin: 'Global digital currency trading service platform',
         gate: 'Blockchain asset international station',
         mexc: 'Digital asset trading platform',

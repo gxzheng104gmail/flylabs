@@ -80,7 +80,7 @@
           </div>
           <div class="col-md-6">
             <h6>{{ getText('footer.contactTitle') }}</h6>
-            <p>Email: acoki@flylabs.one</p>
+            <p>Email: official@flylabs.one</p>
             <p>Email: jim@flylabs.one</p>
           </div>
         </div>
